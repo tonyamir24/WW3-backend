@@ -7,7 +7,7 @@ const challengeSchema = new Schema(
       type: Number,
       required: true,
     },
-    Meassage: {
+    Message: {
       type: String,
       required: true,
     },
