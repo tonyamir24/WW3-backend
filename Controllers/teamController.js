@@ -4,6 +4,10 @@ const Country = require("../Modules/Country");
 const createTeam = async (req, res) => {
   const { Name, Password } = req.body;
   try {
+    const t = await Team.findOne({ Name });
+    if (t) {
+      throw Error(Name + " name Already Taken");
+    }
     const team = await Team.create({ Name, Password });
     await res.status(200).json(team);
   } catch (error) {
