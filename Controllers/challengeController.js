@@ -22,13 +22,13 @@ const getChallenge = async (req, res) => {
   }
 };
 const createChallenge = async (req, res) => {
-  const { ID, Message, Coins, Value } = req.body;
+  const { ID, Message, Reward, Value } = req.body;
   try {
     const c = await Challenge.findOne({ ID });
     if (c) {
       throw Error("ID Already Taken");
     }
-    const challenge = await Challenge.create({ ID, Message, Coins, Value });
+    const challenge = await Challenge.create({ ID, Message, Reward, Value });
     await res.status(200).json(challenge);
   } catch (error) {
     res.status(400).json({ error: error.message });
