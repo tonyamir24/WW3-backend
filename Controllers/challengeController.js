@@ -12,10 +12,11 @@ const getChallenge = async (req, res) => {
           { $inc: { Coins: challenge.Value } }
         );
         await Challenge.findOneAndUpdate({ ID }, { Reward: false });
-      } else {
-        throw Error("Qr Scanned Before");
       }
+    } else {
+      throw Error("Qr Scanned Before");
     }
+
     await res.status(200).json(challenge);
   } catch (error) {
     res.status(400).json({ error: error.message });
