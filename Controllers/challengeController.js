@@ -4,7 +4,7 @@ const Team = require("../Modules/Team");
 const getChallenge = async (req, res) => {
   const { ID, TeamName } = req.body;
   try {
-    const challenge = await Challenge.find({ ID });
+    const challenge = await Challenge.findOne({ ID });
     if (challenge.Coins === true) {
       const team = await Team.findOneAndUpdate(
         { Name: TeamName },
