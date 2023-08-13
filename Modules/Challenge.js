@@ -11,7 +11,7 @@ const challengeSchema = new Schema(
       type: String,
       required: true,
     },
-    Coins: {
+    Reward: {
       type: Boolean,
       required: true,
     },
