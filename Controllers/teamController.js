@@ -146,7 +146,7 @@ const tradeCountry = async (req, res) => {
       throw Error("Country Not Owned By This Team");
     }
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(401).json({ error: error.message });
   }
 };
 const attendance = async (req, res) => {
@@ -167,7 +167,7 @@ const attendance = async (req, res) => {
     });
     throw Error("Person not found");
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    res.status(401).json({ error: error.message });
   }
 };
 
