@@ -14,6 +14,7 @@ const port = process.env.PORT || "8000";
 
 const teamRoutes = require("./Routes/teamRoutes");
 const countryRoutes = require("./Routes/countryRoutes");
+const ChallengeRoutes = require("./Routes/challengeRoutes");
 //const Route = require('./Routes/userController')
 
 // configurations
@@ -39,3 +40,4 @@ app.get("/home", (req, res) => {
 
 app.use(teamRoutes);
 app.use(countryRoutes);
+app.use(ChallengeRoutes);
