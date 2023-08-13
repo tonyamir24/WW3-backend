@@ -6,6 +6,7 @@ const getChallenge = async (req, res) => {
   try {
     const challenge = await Challenge.find({ ID });
     if (challenge.Coins === true) {
+      console.log("hello");
       const team = await Team.findOneAndUpdate(
         { Name: TeamName },
         { $inc: { Coins: challenge.Value } }
