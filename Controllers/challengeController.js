@@ -5,12 +5,12 @@ const getChallenge = async (req, res) => {
   const { ID, TeamName } = req.body;
   try {
     const challenge = await Challenge.find({ ID });
-    if (challenge?.Coins) {
+    if (challenge.Coins === true) {
       const team = await Team.findOneAndUpdate(
         { Name: TeamName },
         { $inc: { Coins: challenge.Value } }
       );
-      await Challenge.findOneAndUpdate({ ID }, { Coins: False });
+      await Challenge.findOneAndUpdate({ ID }, { Coins: false });
     }
     await res.status(200).json(challenge);
   } catch (error) {
