@@ -1,5 +1,6 @@
 const Team = require("../Modules/Team");
 const Country = require("../Modules/Country");
+const Challenge = require("../Modules/Challenge");
 
 const createTeam = async (req, res) => {
   const { Name, Password } = req.body;
@@ -169,6 +170,22 @@ const attendance = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+const getChallenge = async (req, res) => {
+  const { ID, TeamName } = req.body;
+  try {
+    const challenge = await Challenge.find({ ID });
+    if (challenge?.Coins) {
+      const team = await Team.findOneAndUpdate(
+        { Name: TeamName },
+        { $inc: { Coins: challenge.Value } }
+      );
+      await Challenge.findOneAndUpdate({ ID }, { Coins: False });
+    }
+    await res.status(200).json(challenge);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 module.exports = {
   createTeam,
   viewTeam,
@@ -179,4 +196,5 @@ module.exports = {
   assignCountry,
   tradeCountry,
   attendance,
+  getChallenge,
 };

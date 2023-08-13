@@ -5,7 +5,7 @@ const createCountry = async (req, res) => {
     const c = await Country.findOne({ Name });
 
     if (c) {
-      throw Error(Name + "  Already Craeted");
+      throw Error(Name + " Already Craeted");
     }
     const country = await Country.create({ Name, Price, Power, Type });
 
