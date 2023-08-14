@@ -171,7 +171,7 @@ const attendance = async (req, res) => {
   }
 };
 const getMember = async (req, res) => {
-  const { ID } = req.body;
+  const { ID } = req.params;
   try {
     const teams = await Team.find();
 

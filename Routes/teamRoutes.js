@@ -26,6 +26,6 @@ router.put("/addMembers", addMembers);
 router.put("/assignCountry", assignCountry);
 router.put("/tradeCountry", tradeCountry);
 router.put("/attendance", attendance);
-router.get("/member", getMember);
+router.get("/member/:ID", getMember);
 
 module.exports = router;
