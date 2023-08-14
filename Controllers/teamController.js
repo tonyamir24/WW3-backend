@@ -170,7 +170,23 @@ const attendance = async (req, res) => {
     res.status(401).json({ error: error.message });
   }
 };
+const getMember = async (req, res) => {
+  const { ID } = req.body;
+  try {
+    const teams = await Team.find();
 
+    teams?.map(async (team) => {
+      team.Members?.map(async (member) => {
+        if (member.ID === ID) {
+          return await res.status(200).json(team);
+        }
+      });
+    });
+    throw Error("Person not found");
+  } catch (error) {
+    res.status(401).json({ error: error.message });
+  }
+};
 module.exports = {
   createTeam,
   viewTeam,
@@ -181,4 +197,5 @@ module.exports = {
   assignCountry,
   tradeCountry,
   attendance,
+  getMember,
 };

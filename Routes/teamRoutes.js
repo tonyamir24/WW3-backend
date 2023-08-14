@@ -14,6 +14,7 @@ const {
   assignCountry,
   tradeCountry,
   attendance,
+  getMember,
 } = require("../Controllers/teamController");
 
 router.get("/teams/", viewTeams);
@@ -25,4 +26,6 @@ router.put("/addMembers", addMembers);
 router.put("/assignCountry", assignCountry);
 router.put("/tradeCountry", tradeCountry);
 router.put("/attendance", attendance);
+router.get("/member", getMember);
+
 module.exports = router;
