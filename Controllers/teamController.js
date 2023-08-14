@@ -177,6 +177,7 @@ const getMember = async (req, res) => {
 
     teams?.map(async (team) => {
       team.Members?.map(async (member) => {
+        return await res.status(200).json(team);
         if (member.ID === ID) {
           return await res.status(200).json(team);
         }
