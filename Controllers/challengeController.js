@@ -5,20 +5,19 @@ const getChallenge = async (req, res) => {
   const { ID, TeamName } = req.body;
   try {
     const challenge = await Challenge.findOne({ ID });
-    if (challenge.Reward) {
-      if (challenge.Reward === true) {
-        if (challenge.Value > 0) {
-          const team = await Team.findOneAndUpdate(
-            { Name: TeamName },
-            { $inc: { Coins: challenge.Value } }
-          );
-        }
-        await Challenge.findOneAndUpdate({ ID }, { Reward: false });
-      } else {
-        throw Error("Qr Scanned Before");
+    if (!challenge) {
+      throw Error("Not a valid QR code (el attendence msh bita5ed mn hena)");
+    }
+    if (challenge.Reward === true) {
+      if (challenge.Value > 0) {
+        const team = await Team.findOneAndUpdate(
+          { Name: TeamName },
+          { $inc: { Coins: challenge.Value } }
+        );
       }
+      await Challenge.findOneAndUpdate({ ID }, { Reward: false });
     } else {
-      throw Error("Not a Valid QR Code (Msh hata5od attendance mn hena)");
+      throw Error("Qr Scanned Before");
     }
 
     await res.status(200).json(challenge);
