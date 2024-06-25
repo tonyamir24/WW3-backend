@@ -1,9 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
-//Check db connection links in README file
-console.log(process.env.MONGOURI);
-// const MongoURI = process.env.MongoURI ;
-const MongoURI = "mongodb+srv://tonton:tonton@cluster0.u0ywstm.mongodb.net/WW3";
+
+// Load environment variables
+require('dotenv').config();
+
+const MongoURI = process.env.DB;
 
 //App variables
 const app = express();
